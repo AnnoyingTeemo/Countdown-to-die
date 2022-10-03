@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject knife;
 
-    //public GameObject obj;
+    private bool knifeOnCooldown = false;
+    public float knifeCooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +41,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonUp(2)) {
             line.positionCount = 0;
         }
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !knifeOnCooldown) {
             ThrowKnife();
+            StartCoroutine("BeginKnifeCooldown");
         }
     }
 
@@ -81,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         dirToMouse.Normalize();
 
         //Adding the force to the 2D Rigidbody, multiplied by forceAmount, which can be set in the Inspector
-        newKnife.GetComponent<Rigidbody2D>().AddForce(dirToMouse * 100);
+        newKnife.GetComponent<Rigidbody2D>().AddForce(dirToMouse * 500);
     }
 
     private void CheckAttack() {
@@ -105,5 +107,13 @@ public class PlayerMovement : MonoBehaviour
             line.SetPosition(0, transform.position);
             line.SetPosition(1, direction * 100);
         }
+    }
+
+    private IEnumerator BeginKnifeCooldown() {
+        knifeOnCooldown = true;
+
+        yield return new WaitForSeconds(knifeCooldown);
+
+        knifeOnCooldown = false;
     }
 }

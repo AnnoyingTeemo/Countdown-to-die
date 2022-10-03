@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
 {
+    [SerializeField]
     private int timeInSeconds = 600;
 
     public Text timeText;
+
+    public Slider slider;
     //text thing go here
 
     // Start is called before the first frame update
@@ -43,6 +46,13 @@ public class Countdown : MonoBehaviour
         }
 
         timeText.text = minutesStr + ":" + secondsStr;
+
+        if (timeInSeconds <= 600) {
+            slider.value = ((float)timeInSeconds / 600);
+        }
+        else {
+            slider.value = 1;
+        }
     }
 
     private void removeSecond() {
