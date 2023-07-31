@@ -63,4 +63,8 @@ public class Countdown : MonoBehaviour
     {
         timeInSeconds -= timeRemovedSeconds;
     }
+
+    public void AddTime(int timeAdded) {
+        timeInSeconds += timeAdded;
+    }
 }

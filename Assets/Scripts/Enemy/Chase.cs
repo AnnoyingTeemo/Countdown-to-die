@@ -11,6 +11,8 @@ public class Chase : MonoBehaviour
 
     private bool timerStarted;
 
+    public bool inChase = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class Chase : MonoBehaviour
             if (hit.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, transform.up * 10, Color.green);
             }
@@ -44,6 +47,7 @@ public class Chase : MonoBehaviour
             if (hit2.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up + transform.right).normalized * 10, Color.green);
             }
@@ -54,6 +58,7 @@ public class Chase : MonoBehaviour
             if (hit3.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up - transform.right).normalized * 10, Color.green);
             }
@@ -64,6 +69,7 @@ public class Chase : MonoBehaviour
             if (hit4.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up + transform.right / 2).normalized * 10, Color.green);
             }
@@ -74,6 +80,7 @@ public class Chase : MonoBehaviour
             if (hit5.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up - transform.right / 2).normalized * 10, Color.green);
             }
@@ -84,6 +91,7 @@ public class Chase : MonoBehaviour
             if (hit6.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up - transform.right / 4).normalized * 10, Color.green);
             }
@@ -94,6 +102,7 @@ public class Chase : MonoBehaviour
             if (hit7.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up + transform.right / 4).normalized * 10, Color.green);
             }
@@ -104,6 +113,7 @@ public class Chase : MonoBehaviour
             if (hit8.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up + transform.right - transform.right / 4).normalized * 10, Color.green);
             }
@@ -114,6 +124,7 @@ public class Chase : MonoBehaviour
             if (hit9.collider.gameObject.name == "Player") {
                 timerStarted = false;
                 playerFound = true;
+                inChase = true;
                 activateDestinationSetter();
                 Debug.DrawRay(transform.position, (transform.up - transform.right + transform.right / 4).normalized * 10, Color.green);
             }
@@ -121,6 +132,7 @@ public class Chase : MonoBehaviour
 
         if (!playerFound) {
             if (timerStarted && timer < 0) {
+                inChase = false;
                 activatePatrol();
             }
             else if (!timerStarted) {
